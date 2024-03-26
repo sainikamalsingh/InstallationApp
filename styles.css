@@ -92,3 +92,22 @@ footer {
 .buttons button:hover {
     background-color: #555;
 }
+
+.links {
+    margin-top: 20px; /* Add margin to separate from buttons */
+}
+
+.links a {
+    display: block;
+    text-align: center;
+    padding: 10px 20px;
+    margin-bottom: 10px;
+    background-color: #444;
+    color: #fff; /* Change link color to white */
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.links a:hover {
+    background-color: #666;
+}
