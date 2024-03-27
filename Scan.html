@@ -21,7 +21,69 @@
         <br><br><br>
             <button>Scan Device</button>
             <br>
-            
+            <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Barcode Scanner</title>
+</head>
+<body>
+    <h1>Barcode Scanner</h1>
+    <video id="video" width="100%" height="auto" autoplay></video>
+    <p>Scanned Barcode: <span id="barcode"></span></p>
+
+    <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
+    <script>
+        // Function to start the barcode scanner
+        function startScanner() {
+            // Access the user's camera
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(function(stream) {
+                    // Display the camera stream in the video element
+                    var video = document.getElementById('video');
+                    video.srcObject = stream;
+                    video.play();
+
+                    // Initialize QuaggaJS
+                    Quagga.init({
+                        inputStream: {
+                            name: "Live",
+                            type: "LiveStream",
+                            target: video
+                        },
+                        decoder: {
+                            readers: ["ean_reader"] // Specify the barcode format to read (EAN)
+                        }
+                    }, function(err) {
+                        if (err) {
+                            console.error('Error initializing Quagga:', err);
+                            return;
+                        }
+                        // Start QuaggaJS scanner
+                        Quagga.start();
+                    });
+
+                    // Register callback for successful barcode detection
+                    Quagga.onDetected(function(result) {
+                        var barcode = result.codeResult.code;
+                        // Display the scanned barcode
+                        document.getElementById('barcode').textContent = barcode;
+                        // Stop the scanner after successful detection (optional)
+                        Quagga.stop();
+                    });
+                })
+                .catch(function(err) {
+                    console.error('Error accessing the camera:', err);
+                });
+        }
+
+        // Start the scanner when the page loads
+        window.onload = startScanner;
+    </script>
+</body>
+</html>
+
             <a href="index.html"><button >Go Back</button></a>
            <br><br><br><br><br>
         </div>
