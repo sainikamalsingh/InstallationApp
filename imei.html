@@ -19,9 +19,10 @@
         <img src="https://fleet.cargodefenders.ie/VehicleTracker/Images/Branding/loginlogo.png" alt="Image Description" >
         <div class="buttons">
         <br><br><br>
-            <input type="text">
+             <input type="text" id="imeiInput">
+            <div id="apiResponse"></div>
             <br>
-            
+            <button onclick="fetchData()">Sumbit </button>
             <a href="index.html"><button >Go Back</button></a>
            <br><br><br><br><br>
         </div>
@@ -30,5 +31,34 @@
     <footer>
         <p>&copy; 2024 Your Website. All rights reserved.</p>
     </footer>
+    <script>
+        function fetchData() {
+            // Get IMEI from input box
+            const imei = document.getElementById('imeiInput').value;
+            
+            // Construct URL with IMEI
+            const apiUrl = `http://fms.locanix.net/webservicescript/278/CheckDevice?imei=${imei}`;
+
+            // Fetch data from the API
+            fetch(apiUrl)
+                .then(response => {
+                    // Check if the response is successful
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    // Parse response as JSON
+                    return response.json();
+                })
+                .then(data => {
+                    // Display the response in the DOM
+                    const responseDiv = document.getElementById('apiResponse');
+                    responseDiv.textContent = JSON.stringify(data, null, 2);
+                })
+                .catch(error => {
+                    // Display any errors that occurred during the fetch
+                    console.error('There was a problem with the fetch operation:', error);
+                });
+        }
+    </script>
 </body>
 </html>
