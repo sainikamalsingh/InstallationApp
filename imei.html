@@ -5,33 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Cargo Defender Installation App</title>
     <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <header>
-        <h1>Installation App</h1>
-    </header>
-    
-        
-    <section>
-        
-        <!-- Container with image and buttons -->
-    <div class="container">
-        <img src="https://fleet.cargodefenders.ie/VehicleTracker/Images/Branding/loginlogo.png" alt="Image Description" >
-        <div class="buttons">
-        <br><br><br>
-             <input type="text" id="imeiInput">
-            <div id="apiResponse"></div>
-            <br>
-            <button onclick="fetchData()">Sumbit </button>
-            <a href="index.html"><button >Go Back</button></a>
-           <br><br><br><br><br>
-        </div>
-    </div>
-    </section>
-    <footer>
-        <p>&copy; 2024 Your Website. All rights reserved.</p>
-    </footer>
-    <script>
+     <script>
         function fetchData() {
             // Get IMEI from input box
             const imei = document.getElementById('imeiInput').value;
@@ -60,5 +34,32 @@
                 });
         }
     </script>
+</head>
+<body>
+    <header>
+        <h1>Installation App</h1>
+    </header>
+    
+        
+    <section>
+        
+        <!-- Container with image and buttons -->
+    <div class="container">
+        <img src="https://fleet.cargodefenders.ie/VehicleTracker/Images/Branding/loginlogo.png" alt="Image Description" >
+        <div class="buttons">
+        <br><br><br>
+             <input type="text" id="imeiInput">
+            <div id="apiResponse"></div>
+            <br>
+            <button onclick="fetchData()">Sumbit </button>
+            <a href="index.html"><button >Go Back</button></a>
+           <br><br><br><br><br>
+        </div>
+    </div>
+    </section>
+    <footer>
+        <p>&copy; 2024 Your Website. All rights reserved.</p>
+    </footer>
+   
 </body>
 </html>
