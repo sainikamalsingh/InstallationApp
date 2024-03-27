@@ -21,24 +21,16 @@
         <br>
         
             
-            <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcode Scanner</title>
-</head>
-<body>
-    <h1>Barcode Scanner</h1>
-    <video id="video" width="100%" height="auto" autoplay></video><br>
+            <h1>Barcode Scanner</h1>
+    <video id="video" width="100%" height="auto" autoplay></video>
     <p>Scanned Barcode: <span id="barcode"></span></p>
 
     <script src="https://cdn.jsdelivr.net/npm/quagga"></script>
     <script>
         // Function to start the barcode scanner
         function startScanner() {
-            // Access the user's camera
-            navigator.mediaDevices.getUserMedia({ video: true })
+            // Access the back camera
+            navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
                 .then(function(stream) {
                     // Display the camera stream in the video element
                     var video = document.getElementById('video');
